@@ -16,10 +16,17 @@ $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Ite
 $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
 if ($ResultCode == 0) {
-    $servername = "sql206.unaux.com";
-    $username = "unaux_31448661";
-    $password = "kl3aiyxrtlo";
-    $dbname = "unaux_31448661_trial";
+    
+    $servername = "host";
+    $username = "host username";
+    $password = "host passwoRd";
+    $dbname = "database name";
+    
+    
+//     $servername = "sql206.unaux.com";
+//     $username = "unaux_31448661";
+//     $password = "kl3aiyxrtlo";
+//     $dbname = "unaux_31448661_trial";
 
     // Create connection
      $conn = new mysqli($servername, $username, $password, $dbname);
