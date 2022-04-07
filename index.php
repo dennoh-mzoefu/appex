@@ -30,13 +30,9 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 
 // Close cURL resource
-curl_close($ch);<html>
-  <body>
-  echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
-  </body>
-  </html>
+curl_close($ch);
 
-echo "hey";
+
 
 // $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
 // $Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
@@ -60,3 +56,10 @@ echo "hey";
 
 //     $conn = null;
 // }
+?>
+<html>
+  <body>
+ <?php echo "hey";
+  echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";?>
+  </body>
+  </html>
