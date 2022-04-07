@@ -4,7 +4,7 @@ header("Content-Type: application/json");
 $stkCallbackResponse = file_get_contents('php://input');
 $logFile = "stkTinypesaResponse.json";
 $log = fopen($logFile, "a");
-$callbackContent = $stkCallbackResponse;
+$callbackContent = json_decode($stkCallbackResponse);
 fwrite($log, $callbackContent);
 fclose($log);
 // API URL
@@ -31,6 +31,7 @@ $result = curl_exec($ch);
 
 // Close cURL resource
 curl_close($ch);
+echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
 echo "hey";
 
 // $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
