@@ -4,7 +4,7 @@ header("Content-Type: application/json");
 $stkCallbackResponse = file_get_contents('php://input');
 $logFile = "stkTinypesaResponse.json";
 $log = fopen($logFile, "a");
-$callbackContent = json_decode($stkCallbackResponse);
+$callbackContent = $stkCallbackResponse;
 fwrite($log, $callbackContent);
 fclose($log);
 // API URL
@@ -55,13 +55,3 @@ echo "hey";
 
 //     $conn = null;
 // }
-<html>
-  <script type="text/javascript" src="jquery.js"></script>          
-<script type="text/javascript">
-
-$(document).ready(function()
-  {
-    setTimeout(function()    {   <?php echo $stkCallbackResponse; ?>    }, 10000);
-  });
-</script>  
-  </html>
