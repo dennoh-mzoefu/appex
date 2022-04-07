@@ -16,30 +16,19 @@ $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Ite
 $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
 if ($ResultCode == 0) {
-    
-//     $servername = "host";
-//     $username = "host username";
-//     $password = "host passwoRd";
-//     $dbname = "database name";
-    
-    
-    $servername = "sql206.unaux.com";
-    $username = "unaux_31448661";
-    $password = "kl3aiyxrtlo";
-    $dbname = "unaux_31448661_trial";
+    $servername = "host";
+    $username = "host username";
+    $password = "host passwoRd";
+    $dbname = "database name";
 
     // Create connection
-     $conn = new mysqli($servername, $username, $password, $dbname);
-//     $db = mysqli_connect('sql206.unaux.com', 'unaux_31448661', 'kl3aiyxrtlo', 'unaux_31448661_trial');
+    $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-//     $user_check_query ="UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber";
-//     $insert = $conn->query("UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber");
-// $result = mysqli_query($db, $user_check_query);
-     $insert = $conn->query("INSERT INTO users(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
+    $insert = $conn->query("INSERT INTO tinypesa(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
 
     $conn = null;
 }
