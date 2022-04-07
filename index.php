@@ -7,9 +7,10 @@ $log = fopen($logFile, "a");
 fwrite($log, $stkCallbackResponse);
 fclose($log);
 
-// $callbackContent = json_decode($stkCallbackResponse);
+$callbackContent = json_decode($stkCallbackResponse);
 
-// $ResultCode = $callbackContent->Body->stkCallback->ResultCode;
+$ResultCode = $callbackContent["Body"]["stkCallback"]["ResultCode"];
+echo $ResultCode;
 // $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
 // $Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
 // $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[1]->Value;
