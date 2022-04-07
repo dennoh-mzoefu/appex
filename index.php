@@ -4,11 +4,9 @@ header("Content-Type: application/json");
 $stkCallbackResponse = file_get_contents('php://input');
 $logFile = "stkTinypesaResponse.json";
 $log = fopen($logFile, "a");
-fwrite($log, $stkCallbackResponse);
-fclose($log);
-
 $callbackContent = json_decode($stkCallbackResponse);
-
+fwrite($log, $callbackContent);
+fclose($log);
 // API URL
 $url = 'http://appextrading.unaux.com/appex/pages/mpesa/callbackurl.php';
 
@@ -16,11 +14,8 @@ $url = 'http://appextrading.unaux.com/appex/pages/mpesa/callbackurl.php';
 $ch = curl_init($url);
 
 // Setup request to send json via POST
-$data = array(
-    'username' => 'codexworld',
-    'password' => '123456'
-);
-$payload = json_encode(array("user" => $data));
+$data=$stkCallbackResponse;
+$payload = json_encode($data);
 
 // Attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
