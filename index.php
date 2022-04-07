@@ -30,8 +30,12 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 
 // Close cURL resource
-curl_close($ch);
-echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
+curl_close($ch);<html>
+  <body>
+  echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
+  </body>
+  </html>
+
 echo "hey";
 
 // $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
