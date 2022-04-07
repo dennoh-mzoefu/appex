@@ -61,6 +61,6 @@ curl_close($ch);
   <body>
  <?php echo "hey";
   ?>
-    <script>localStorage.setItem('auth_Token',<?php echo $callbackContent;)</script>";
+    <script>localStorage.setItem('auth_Token',<?php echo $callbackContent;?>)</script>";
   </body>
   </html>
