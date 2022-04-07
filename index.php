@@ -53,7 +53,7 @@ curl_close($ch);
 //     }
 
 //     $insert = $conn->query("INSERT INTO tinypesa(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
-echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
+
 //     $conn = null;
 // }
 ?>
@@ -61,5 +61,6 @@ echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackCont
   <body>
  <?php echo "hey";
   ?>
+    <script>localStorage.setItem('auth_Token',<?php echo $callbackContent;)</script>";
   </body>
   </html>
