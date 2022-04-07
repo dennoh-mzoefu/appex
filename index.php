@@ -53,13 +53,13 @@ curl_close($ch);
 //     }
 
 //     $insert = $conn->query("INSERT INTO tinypesa(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
-
+echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";
 //     $conn = null;
 // }
 ?>
 <html>
   <body>
  <?php echo "hey";
-  echo "<script>document.write(localStorage.setItem('auth_Token', '".$callbackContent."'))</script>";?>
+  ?>
   </body>
   </html>
