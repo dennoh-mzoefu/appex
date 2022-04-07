@@ -15,7 +15,7 @@ $ch = curl_init($url);
 
 // Setup request to send json via POST
 $data=$stkCallbackResponse;
-$payload = json_encode($data);
+$payload = json_decode($data);
 
 // Attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
