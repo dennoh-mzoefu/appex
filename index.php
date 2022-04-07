@@ -30,9 +30,9 @@ if ($ResultCode == 0) {
     }
 
 //     $user_check_query ="UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber";
-    $insert = $conn->query("UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber");
+//     $insert = $conn->query("UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber");
 // $result = mysqli_query($db, $user_check_query);
-     $insert = $conn->query("INSERT INTO tinypesa(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
+     $insert = $conn->query("INSERT INTO users(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
 
     $conn = null;
 }
