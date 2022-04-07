@@ -4,63 +4,31 @@ header("Content-Type: application/json");
 $stkCallbackResponse = file_get_contents('php://input');
 $logFile = "stkTinypesaResponse.json";
 $log = fopen($logFile, "a");
-$callbackContent = json_decode($stkCallbackResponse);
-fwrite($log, $callbackContent);
+fwrite($log, $stkCallbackResponse);
 fclose($log);
-// API URL
-$url = 'http://appextrading.unaux.com/appex/pages/mpesa/callbackurl.php';
 
-// Create a new cURL resource
-$ch = curl_init($url);
+$callbackContent = json_decode($stkCallbackResponse);
 
-// Setup request to send json via POST
-$data=$stkCallbackResponse;
-$payload = json_decode($data);
+$ResultCode = $callbackContent->Body->stkCallback->ResultCode;
+$CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
+$Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
+$MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+$PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
 
-// Attach encoded JSON string to the POST fields
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+if ($ResultCode == 0) {
+    $servername = "host";
+    $username = "host username";
+    $password = "host passwoRd";
+    $dbname = "database name";
 
-// Set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    // Create connection
+    $db = mysqli_connect('sql206.unaux.com', 'unaux_31448661', 'kl3aiyxrtlo', 'unaux_31448661_trial');
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Return response instead of outputting
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Execute the POST request
-$result = curl_exec($ch);
-
-// Close cURL resource
-curl_close($ch);
-
-
-
-// $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
-// $Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
-// $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[1]->Value;
-// $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
-
-// if ($ResultCode == 0) {
-//     $servername = "host";
-//     $username = "host username";
-//     $password = "host passwoRd";
-//     $dbname = "database name";
-
-//     // Create connection
-//     $conn = new mysqli($servername, $username, $password, $dbname);
-//     // Check connection
-//     if ($conn->connect_error) {
-//         die("Connection failed: " . $conn->connect_error);
-//     }
-
-//     $insert = $conn->query("INSERT INTO tinypesa(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$ResultCode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
-
-//     $conn = null;
-// }
-?>
-<html>
-  <body>
- <?php echo "hey";?>
-  </body>
-  <script>localStorage.setItem('auth_Token',<?php echo $callbackContent;?>)</script>";
-
-  </html>
+    $user_check_query ="UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber";
+$result = mysqli_query($db, $user_check_query);
+    $conn = null;
+}
