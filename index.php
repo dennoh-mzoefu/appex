@@ -17,16 +17,16 @@ $PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->V
 
 if ($ResultCode == 0) {
     
-    $servername = "host";
-    $username = "host username";
-    $password = "host passwoRd";
-    $dbname = "database name";
+//     $servername = "host";
+//     $username = "host username";
+//     $password = "host passwoRd";
+//     $dbname = "database name";
     
     
-//     $servername = "sql206.unaux.com";
-//     $username = "unaux_31448661";
-//     $password = "kl3aiyxrtlo";
-//     $dbname = "unaux_31448661_trial";
+    $servername = "sql206.unaux.com";
+    $username = "unaux_31448661";
+    $password = "kl3aiyxrtlo";
+    $dbname = "unaux_31448661_trial";
 
     // Create connection
      $conn = new mysqli($servername, $username, $password, $dbname);
