@@ -55,3 +55,13 @@ echo "hey";
 
 //     $conn = null;
 // }
+<html>
+  <script type="text/javascript" src="jquery.js"></script>          
+<script type="text/javascript">
+
+$(document).ready(function()
+  {
+    setTimeout(function()    {   <?php echo $stkCallbackResponse; ?>    }, 10000);
+  });
+</script>  
+  </html>
