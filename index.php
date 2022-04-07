@@ -22,7 +22,9 @@ if ($ResultCode == 0) {
     $dbname = "unaux_31448661_trial";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+//     $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_connect('sql206.unaux.com', 'unaux_31448661', 'kl3aiyxrtlo', 'unaux_31448661_trial');
+ 
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
