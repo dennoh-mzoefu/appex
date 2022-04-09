@@ -1,26 +1,30 @@
 <?php
- 		header("Content-Type: application/json");
+header("Content-Type: application/json");
 
-     $response = '{
-         "ResultCode": 0, 
-         "ResultDesc": "Confirmation Received Successfully"
-     }';
- 
-     // DATA
-     $mpesaResponse = file_get_contents('php://input');
- 
-     // log the response
-     $logFile = "http://appextrading.unaux.com/daraja/M_PESAConfirmationResponse.txt";
- 
-     // write to file
-     $log = fopen($logFile, "a");
- 
-     fwrite($log, $mpesaResponse);
-     fclose($log);
- 
-     echo $response;
-$db = mysqli_connect('sql206.unaux.com', 'unaux_31448661', 'kl3aiyxrtlo', 'unaux_31448661_trial');
+$stkCallbackResponse = file_get_contents('php://input');
 
-$user_check_query ="UPDATE users set CheckoutRequestID = '$CheckoutRequestID',ResultCode = '$ResultCode',amount = '$Amount',MpesaReceiptNumber='$MpesaReceiptNumber',PhoneNumber='$PhoneNumber'  WHERE phoneNumber=$PhoneNumber";
-$result = mysqli_query($db, $user_check_query);
+$callbackContent = json_decode($stkCallbackResponse);
+
+$ResultCode = $callbackContent->Body->stkCallback->ResultCode;
+$CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
+$Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
+$MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+$PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
+
+if ($ResultCode == 0) {
+    $servername = "sql206.unaux.com";
+    $username = "unaux_31448661";
+    $password = "kl3aiyxrtlo";
+    $dbname = "unaux_31448661_trial";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $insert = $conn->query("UPDATE  users set CheckoutRequestID = '$CheckoutRequestID',MpesaReceiptNumber='$MpesaReceiptNumber' where phoneNumber ='$PhoneNumber'");
+
+    $conn = null;
 }
