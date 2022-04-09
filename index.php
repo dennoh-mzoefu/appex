@@ -20,6 +20,7 @@ if ($ResultCode == 0) {
     $username = "unaux_31448661";
     $password = "kl3aiyxrtlo";
     $dbname = "unaux_31448661_trial";
+    echo "hello";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
