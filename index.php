@@ -2,6 +2,10 @@
 header("Content-Type: application/json");
 
 $stkCallbackResponse = file_get_contents('php://input');
+$logFile = "stkTinypesaResponse.json";
+$log = fopen($logFile, "a");
+fwrite($log, $stkCallbackResponse);
+fclose($log);
 
 $callbackContent = json_decode($stkCallbackResponse);
 
@@ -18,13 +22,14 @@ if ($ResultCode == 0) {
     $dbname = "unaux_31448661_trial";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_query($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $insert = $conn->query("UPDATE  users set CheckoutRequestID = '28398273',MpesaReceiptNumber='23298080' where phoneNumber ='0743386487'");
-
-    $conn = null;
+    // $insert = $conn->query("UPDATE  users set CheckoutRequestID = '$CheckoutRequestID',MpesaReceiptNumber='$MpesaReceiptNumber' where phoneNumber ='$PhoneNumber'");
+    $insert ="UPDATE  users set CheckoutRequestID = 'CheckoutRequestID',MpesaReceiptNumber='MpesaReceiptNumber' where phoneNumber ='0743386487'";
+    mysqli_query($conn, $insert);
+    // $conn = null;
 }
