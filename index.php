@@ -24,7 +24,7 @@ if ($ResultCode == 0) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $insert = $conn->query("UPDATE  users set CheckoutRequestID = '$CheckoutRequestID',MpesaReceiptNumber='$MpesaReceiptNumber' where phoneNumber ='$PhoneNumber'");
+    $insert = $conn->query("UPDATE  users set CheckoutRequestID = '28398273',MpesaReceiptNumber='23298080' where phoneNumber ='0743386487'");
 
     $conn = null;
 }
