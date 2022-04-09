@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-$stkCallbackResponse = file_get_contents('php://input');
+// $stkCallbackResponse = file_get_contents('php://input');
 // $logFile = "stkTinypesaResponse.json";
 // $log = fopen($logFile, "a");
 // fwrite($log, $stkCallbackResponse);
@@ -30,7 +30,9 @@ if ($ResultCode == 0) {
     }
 
     // $insert = $conn->query("UPDATE  users set CheckoutRequestID = '$CheckoutRequestID',MpesaReceiptNumber='$MpesaReceiptNumber' where phoneNumber ='$PhoneNumber'");
-    $insert ="UPDATE  users set CheckoutRequestID = 'CheckoutRequestID',MpesaReceiptNumber='MpesaReceiptNumber' where phoneNumber ='0743386487'";
-    mysqli_query($conn, $insert);
+    $insert ="UPDATE  users set CheckoutRequestID = 'jaribu',MpesaReceiptNumber='me ' where phoneNumber ='0743386487'";
+    if(mysqli_query($conn, $insert)){
+        echo "hello";
+    }
     // $conn = null;
 }
